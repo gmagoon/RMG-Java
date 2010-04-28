@@ -461,6 +461,11 @@ public class ReactionTemplate {
       	if (k==null) {
 				k = findClosestRateConstant(fg);
 				k[0].setSource(name + " estimate: (" + k[0].getSource() + ")");
+				if (k==null){
+				    System.out.println(p_structure);
+				    System.out.println(fg);
+				    System.out.println(p_structure.toChemkinString(true));
+				}
       	}
       	else k[0].setSource(name  + " exact: ");
 			k[0].setComments(comments);
