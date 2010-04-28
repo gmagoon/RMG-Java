@@ -459,13 +459,16 @@ public class ReactionTemplate {
 			String comments = getKineticsComments(fg);
       	k = findExactRateConstant(fg);
       	if (k==null) {
+	    try{
 				k = findClosestRateConstant(fg);
 				k[0].setSource(name + " estimate: (" + k[0].getSource() + ")");
-				if (k==null){
-				    System.out.println(p_structure);
-				    System.out.println(fg);
-				    System.out.println(p_structure.toChemkinString(true));
-				}
+	    }
+	    catch (RateConstantNotFoundException e) {
+		System.out.println(p_structure);
+	        System.out.println(fg);
+	        System.out.println(p_structure.toChemkinString(true));
+              	return k;
+              }
       	}
       	else k[0].setSource(name  + " exact: ");
 			k[0].setComments(comments);
